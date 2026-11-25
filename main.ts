@@ -11,5 +11,7 @@ if (/\r/.test(line) || / $/.test(line)) { console.error("FAIL: carriage return o
 if (!/[.!?]$/.test(line)) { console.error("FAIL: line must end with terminal punctuation"); process.exit(1); }
 if (/^\s|\s$/.test(line)) { console.error("FAIL: leading or trailing whitespace"); process.exit(1); }
 if (/\s{2,}/.test(line)) { console.error("FAIL: double space inside the line"); process.exit(1); }
+if (line.trim().length === 0) { console.error("FAIL: line is only whitespace"); process.exit(1); }
+if (line.split(/\s+/).length < 3) { console.error("FAIL: a joke needs at least 3 words"); process.exit(1); }
 console.log(line);
 console.log(`OK: ${line.length}/${MAX_CHARS} characters, single line.`);
